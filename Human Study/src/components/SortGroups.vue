@@ -1,13 +1,11 @@
 <template>
-    <!-- <draggable v-model="imagebars">
-        <ImageBar v-for="imagebar in imagebars" :key="imagebar.id" :imgarr="imagebar"></ImageBar>
-        <div :id="element.id" v-for="element in imagebars" :key="element.id">
-          <strong>{{element.name}}</strong>
-          <span>{{element.images[0]}}</span>
-        </div>
-    </draggable> -->
- <ImageBar v-for="images in imagebars" :imgarr="images.images"></ImageBar>
- <!-- <ImageBar :imgarr="['../assets/images/group2/p1.png','../assets/images/group2/p2.png','../assets/images/group2/p3.png','../assets/images/group2/p4.png']"></ImageBar> -->
+    <draggable :list="imagebars" item-key="name">
+        <template #item = "{ element }">
+            <div>
+                <ImageBar :imgarr="element.images"></ImageBar>
+            </div>
+        </template>
+    </draggable>
 </template>
 
 <style scoped>
@@ -29,8 +27,14 @@ export default {
         return {
             imagebars: [
                 {id: 0, images: ['../assets/images/group1/p1.png','../assets/images/group1/p2.png','../assets/images/group1/p3.png','../assets/images/group1/p4.png']},
-                {id: 1, images: ['../assets/images/group2/p1.png','../assets/images/group2/p2.png','../assets/images/group2/p3.png','../assets/images/group2/p4.png']}
+                {id: 1, images: ['../assets/images/group2/p1.png','../assets/images/group2/p2.png','../assets/images/group2/p3.png','../assets/images/group2/p4.png']},
+                {id: 2, images: ['../assets/images/group3/p1.png','../assets/images/group3/p2.png','../assets/images/group3/p3.png','../assets/images/group3/p4.png']}
             ],
+            list: [
+        { name: "John", id: 0 },
+        { name: "Joao", id: 1 },
+        { name: "Jean", id: 2 }
+      ],
         };
     },
 

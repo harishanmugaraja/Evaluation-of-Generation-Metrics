@@ -2,6 +2,7 @@
     <div class = 'rectangle'>
         <img v-for="image in this.imgarr" :src="image" />
     </div>
+    <br>
 </template>
 
 <style scoped>
