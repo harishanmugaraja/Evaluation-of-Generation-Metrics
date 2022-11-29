@@ -1,6 +1,6 @@
 <template>
-  <div class='square'>
-    <img :src="this.imgurl" />
+  <div class='square' v-bind:class="[selected ? 'selected' : '']">
+    <img :src="this.imgurl"/> 
   </div>
   <br>
 </template>
@@ -13,9 +13,15 @@ img {
 }
 
 .square {
-  width: 102px;
-  height: 102px;
+  max-width: 104px;
+  max-height: 104px;
+  padding: 0px;
+  margin: 0px;
   border: 2px solid #000;
+}
+
+.square.selected {
+  border: 2px solid #0A0;
 }
 </style>
 
@@ -24,8 +30,14 @@ export default {
   props: {
     imgurl: String,
     fidScore: Number,
+    seqNum: Number,
+    selected: Boolean,
   },
-
+  data(){
+    return {
+      isSelected : this.selected,
+    }
+  },
   created() {
     console.log(this.imgurl);
   },

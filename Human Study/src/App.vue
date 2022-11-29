@@ -1,12 +1,16 @@
 <script setup>
 import RankGroups from './components/RankGroups.vue'
 import BinGroups from './components/BinGroups.vue'
+import ImageGridSingle from './components/ImageGridSingle.vue';
+import ImageGridWhole from './components/ImageGridWhole.vue';
 </script>
 
 <template>
   <div class="app">
-    <RankGroups></RankGroups>
-    <BinGroups></BinGroups>
+    <!-- <RankGroups></RankGroups> -->
+    <!-- <BinGroups></BinGroups> -->
+    <!-- <ImageGridWhole :size="4"></ImageGridWhole> -->
+    <ImageGridSingle :size="4"></ImageGridSingle>
   </div>
 </template>
 
