@@ -1,5 +1,6 @@
 <template>
     <div class="rank-container">
+        <h1>{{prompt}}</h1>
         <draggable :list="imagebars" item-key="name">
             <template #item = "{ element }">
                 <div>
@@ -27,6 +28,10 @@ export default {
     components: {
         'ImageBar': ImageBar,
         'draggable': draggable
+    },
+
+    props: {
+        prompt: String,
     },
 
     data() {

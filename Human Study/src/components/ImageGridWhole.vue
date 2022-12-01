@@ -1,4 +1,5 @@
 <template>
+    <h1>{{prompt}}</h1>
     <SquareGrid class = "multi" v-for="(imagearr, index) in imagearrs" :key=index @click="select(index)">    
         <div v-for="(element, index) in imagearr" :key="index">  <!-- @click="$emit('select', element.fid)" -->
             <ImageBox :imgurl="element.url" :fidScore = "element.fid" :seqNum="index" :selected="element.selected"></ImageBox>
@@ -9,7 +10,8 @@
 <style scoped lang="scss">
 
 .multi {
-    margin: 10%;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
 }
 
 SquareGrid {
@@ -67,6 +69,7 @@ import ImageBox from './ImageBox.vue';
 export default {
     props: {
         size: Number, //This is the length of one side of the grid (i.e grid can have at max size*size ImageBoxes)
+        prompt: String,
     },
     computed: {
         finished() {

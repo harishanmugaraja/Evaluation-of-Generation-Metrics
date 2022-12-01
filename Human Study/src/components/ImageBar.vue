@@ -1,4 +1,5 @@
 <template>
+    <h1>{{prompt}}</h1>
     <div class = 'rectangle'>
         <img v-for="image in this.imgarr" :src="image" />
     </div>
@@ -22,6 +23,7 @@ border:1px solid #000;
 export default {
     props: {
     imgarr: Array,
+    prompt: String,
   },
 
   created() {

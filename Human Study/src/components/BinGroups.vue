@@ -1,4 +1,5 @@
 <template>
+  <h1>{{prompt}}</h1>
   <div class="BinGroups">
     <div class="edge left">
       <p>drag here &gt;</p>
@@ -44,8 +45,9 @@
 <style scoped>
 .BinGroups {
   position: relative;
-  height: auto;
-  margin-top: 2cm;
+  height: 60vh;
+  margin-top: 1cm;
+  margin-bottom: 2cm; 
 }
 
 .center-left {
@@ -58,7 +60,7 @@
   left: 65%;
 }
 
-.edge {
+.edge { 
   background-color: khaki;
   min-width: 100px;
   min-height: 250px;
@@ -106,6 +108,9 @@ export default {
     readyToSubmit() {
       return this.shuffle_list_c1.length == 0 && this.shuffle_list_c2.length == 0;
     }
+  },
+  props: {
+    prompt: String,
   },
   methods: {
     init_state() {

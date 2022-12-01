@@ -7,10 +7,10 @@ import ImageGridWhole from './components/ImageGridWhole.vue';
 
 <template>
   <div class="app">
-    <!-- <RankGroups></RankGroups> -->
-    <!-- <BinGroups></BinGroups> -->
-    <!-- <ImageGridWhole :size="4"></ImageGridWhole> -->
-    <ImageGridSingle :size="4"></ImageGridSingle>
+    <RankGroups :prompt = "'Rank these groups of images from highest image quality to the lowest'"></RankGroups>
+    <BinGroups :prompt = "'These images belong to one of two different groups, seperate them into their respective groups'"></BinGroups>
+    <ImageGridWhole :prompt = "'Select the group of images below that has the highest image quality'"></ImageGridWhole>
+    <ImageGridSingle :prompt = "'Select the image from the group of images below that does not belong'"></ImageGridSingle>
   </div>
 </template>
 

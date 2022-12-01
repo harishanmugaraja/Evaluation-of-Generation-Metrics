@@ -1,4 +1,5 @@
 <template>
+    <h1>{{prompt}}</h1>
     <SquareGrid>    
         <div v-for="(element, index) in imagearr" :key="index" @click="select(index)">  <!-- @click="$emit('select', element.fid)" -->
             <ImageBox :imgurl="element.url" :fidScore = "element.fid" :seqNum="index" :selected="element.selected"></ImageBox>
@@ -63,6 +64,7 @@ import ImageBox from './ImageBox.vue';
 export default {
     props: {
         size: Number, //This is the length of one side of the grid (i.e grid can have at max size*size ImageBoxes)
+        prompt: String,
     },
     computed: {
         finished() {
