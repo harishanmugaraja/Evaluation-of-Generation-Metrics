@@ -1,7 +1,7 @@
 <template>
     <h1>{{prompt}}</h1>
     <SquareGrid>    
-        <div v-for="(element, index) in imagearr" :key="index" @click="select(index)">  <!-- @click="$emit('select', element.fid)" -->
+        <div v-for="(element, index) in imagearr" :key="index" @click="select(index)">
             <ImageBox :imgurl="element.url" :fidScore = "element.fid" :seqNum="index" :selected="element.selected"></ImageBox>
         </div>
     </SquareGrid>

@@ -11,6 +11,7 @@ import ImageGridWhole from './components/ImageGridWhole.vue';
     <BinGroups :prompt = "'These images belong to one of two different groups, seperate them into their respective groups'"></BinGroups>
     <ImageGridWhole :prompt = "'Select the group of images below that has the highest image quality'"></ImageGridWhole>
     <ImageGridSingle :prompt = "'Select the image from the group of images below that does not belong'"></ImageGridSingle>
+    <BinGroups :prompt = "'These images belong to one of two different groups, seperate them into their respective groups'"></BinGroups>
   </div>
 </template>
 
