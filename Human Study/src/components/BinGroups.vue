@@ -4,14 +4,14 @@
     <div class="edge left">
       <p>drag here &gt;</p>
       <draggable style="min-height:250px" :list="bin1" item-key="id" :animation="200" ghost-class="ghost-box"
-        group="images">
+      :group="this.id">
         <template #item="{ element }">
           <ImageBox :imgurl="element.url" :fidScore="element.fid"></ImageBox>
         </template>
       </draggable>
     </div>
     <draggable class="center-left" style="min-height:250px" :list="shuffle_list_c1" item-key="id" :animation="200"
-      ghost-class="ghost-box" group="images">
+      ghost-class="ghost-box" :group="this.id">
       <template #item="{ element }">
         <div>
           <ImageBox :imgurl="element.url" :fidScore="element.fid"></ImageBox>
@@ -19,7 +19,7 @@
       </template>
     </draggable>
     <draggable class="center-right" style="min-height:250px" :list="shuffle_list_c2" item-key="id" :animation="200"
-      ghost-class="ghost-box" group="images">
+      ghost-class="ghost-box" :group="this.id">
       <template #item="{ element }">
         <div>
           <ImageBox :imgurl="element.url" :fidScore="element.fid"></ImageBox>
@@ -29,7 +29,7 @@
     <div class="edge right">
       <p>&lt; drag here</p>
       <draggable style="min-height:250px" :list="bin2" item-key="id" :animation="200" ghost-class="ghost-box"
-        group="images">
+        :group="this.id">
         <template #item="{ element }">
           <ImageBox :imgurl="element.url" :fidScore="element.fid"></ImageBox>
         </template>
@@ -96,6 +96,10 @@
 <script>
 import ImageBox from './ImageBox.vue';
 import draggable from 'vuedraggable';
+import uniqueId from 'lodash.uniqueid';
+import axios from "axios";
+
+const BASE_URL = 'http://127.0.0.1:5000/'
 
 export default {
   name: 'sort-groups',
@@ -147,70 +151,31 @@ export default {
     },
   },
   created() {
-    this.init_state();
-
+    this.id = uniqueId();
+    axios
+      .get(BASE_URL+'binGroups')
+      .then((response) => {
+          this.groups = response.data.imagearrs; 
+          this.init_state();
+        });
   },
   data() {
     return {
+      id: null,
       shuffle_list_c1: [],
       shuffle_list_c2: [],
-      bin1: [], //[{fid:1, url:'../assets/images/group3/p1.png', id:-1}],
-      bin2: [],//{fid:1, url:'../assets/images/group3/p1.png', id:-2}],
-      groups: [
-        {
-          fid: 1,
-          imagelist: ['../assets/images/group3/p1.png', '../assets/images/group3/p2.png', '../assets/images/group3/p3.png', '../assets/images/group3/p4.png'],
-        },
-        {
-          fid: 2,
-          imagelist: ['../assets/images/group1/p1.png', '../assets/images/group1/p2.png', '../assets/images/group1/p3.png', '../assets/images/group1/p4.png'],
-        }
-        // TODO replace to work with the following format from the beggening
-        /*  
-          [
-{
-  "id": 5,
-  "fid": 2,
-  "url": "../assets/images/group1/p2.png"
-},
-{
-  "id": 4,
-  "fid": 2,
-  "url": "../assets/images/group1/p1.png"
-},
-{
-  "id": 6,
-  "fid": 2,
-  "url": "../assets/images/group1/p3.png"
-},
-{
-  "id": 7,
-  "fid": 2,
-  "url": "../assets/images/group1/p4.png"
-},
-{
-  "id": 0,
-  "fid": 1,
-  "url": "../assets/images/group3/p1.png"
-},
-{
-  "id": 2,
-  "fid": 1,
-  "url": "../assets/images/group3/p3.png"
-},
-{
-  "id": 1,
-  "fid": 1,
-  "url": "../assets/images/group3/p2.png"
-},
-{
-  "id": 3,
-  "fid": 1,
-  "url": "../assets/images/group3/p4.png"
-}
-]
-        */
-      ],
+      bin1: [],
+      bin2: [],
+      groups: [], 
+      //   [{
+      //     fid: 1,
+      //     imagelist: ['../assets/images/group3/p1.png', '../assets/images/group3/p2.png', '../assets/images/group3/p3.png', '../assets/images/group3/p4.png'],
+      //   },
+      //   {
+      //     fid: 2,
+      //     imagelist: ['../assets/images/group1/p1.png', '../assets/images/group1/p2.png', '../assets/images/group1/p3.png', '../assets/images/group1/p4.png'],
+      //   }
+      // ],
     };
   }
 

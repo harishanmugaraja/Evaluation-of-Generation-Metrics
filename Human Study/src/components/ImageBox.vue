@@ -39,7 +39,7 @@ export default {
     }
   },
   created() {
-    console.log(this.imgurl);
+    // console.log(this.imgurl);
   },
 
 }

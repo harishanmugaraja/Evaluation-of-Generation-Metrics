@@ -66,6 +66,12 @@ SquareGrid {
 <script>
 import ImageBox from './ImageBox.vue';
 
+import uniqueId from 'lodash.uniqueid';
+
+const BASE_URL = 'http://127.0.0.1:5000/'
+
+import axios from 'axios';
+
 export default {
     props: {
         size: Number, //This is the length of one side of the grid (i.e grid can have at max size*size ImageBoxes)
@@ -81,8 +87,17 @@ export default {
         }
     },
     created() {
+        this.id = uniqueId();
+        axios
+        .get(BASE_URL+'gridWhole')
+        .then((response) => {
+          this.imagearrs = response.data.imagearrs; 
+        //   console.log(response);
+          this.initData();
+        });
         document.documentElement.style.setProperty("--content-width", this.size * 100);
         document.documentElement.style.setProperty("--columns", this.size);
+
         // console.log("create grid ran")
     },
     methods: {
@@ -110,108 +125,109 @@ export default {
     data() {
         return {
             selectNum: -1,
-            imagearrs: 
+            id: null,
+            imagearrs: [],
             
-            [
+            // [
 
-            [
-                {
-                    "id": 5,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p2.png"
-                    //selected: false
-                },
-                {
-                    "id": 4,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p1.png"
-                },
-                {
-                    "id": 6,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p3.png"
-                },
-                {
-                    "id": 7,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p4.png"
-                },
-                {
-                    "id": 0,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p1.png"
-                },
-                {
-                    "id": 2,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p3.png"
-                },
-                {
-                    "id": 1,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p2.png"
-                },
-                {
-                    "id": 3,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p4.png"
-                },
-                {
-                    "id": 8,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p3.png"
-                },
-            ],
+            // [
+            //     {
+            //         "id": 5,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p2.png"
+            //         //selected: false
+            //     },
+            //     {
+            //         "id": 4,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p1.png"
+            //     },
+            //     {
+            //         "id": 6,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p3.png"
+            //     },
+            //     {
+            //         "id": 7,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p4.png"
+            //     },
+            //     {
+            //         "id": 0,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p1.png"
+            //     },
+            //     {
+            //         "id": 2,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p3.png"
+            //     },
+            //     {
+            //         "id": 1,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p2.png"
+            //     },
+            //     {
+            //         "id": 3,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p4.png"
+            //     },
+            //     {
+            //         "id": 8,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p3.png"
+            //     },
+            // ],
 
-            [
-                {
-                    "id": 5,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p2.png"
-                    //selected: false
-                },
-                {
-                    "id": 4,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p1.png"
-                },
-                {
-                    "id": 6,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p3.png"
-                },
-                {
-                    "id": 7,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p4.png"
-                },
-                {
-                    "id": 0,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p1.png"
-                },
-                {
-                    "id": 2,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p3.png"
-                },
-                {
-                    "id": 1,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p2.png"
-                },
-                {
-                    "id": 3,
-                    "fid": 1,
-                    "url": "../assets/images/group3/p4.png"
-                },
-                {
-                    "id": 8,
-                    "fid": 2,
-                    "url": "../assets/images/group1/p3.png"
-                },
-            ]
-            ],
+            // [
+            //     {
+            //         "id": 5,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p2.png"
+            //         //selected: false
+            //     },
+            //     {
+            //         "id": 4,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p1.png"
+            //     },
+            //     {
+            //         "id": 6,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p3.png"
+            //     },
+            //     {
+            //         "id": 7,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p4.png"
+            //     },
+            //     {
+            //         "id": 0,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p1.png"
+            //     },
+            //     {
+            //         "id": 2,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p3.png"
+            //     },
+            //     {
+            //         "id": 1,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p2.png"
+            //     },
+            //     {
+            //         "id": 3,
+            //         "fid": 1,
+            //         "url": "../assets/images/group3/p4.png"
+            //     },
+            //     {
+            //         "id": 8,
+            //         "fid": 2,
+            //         "url": "../assets/images/group1/p3.png"
+            //     },
+            // ]
+            // ],
             gridarr: [],
         };
     },

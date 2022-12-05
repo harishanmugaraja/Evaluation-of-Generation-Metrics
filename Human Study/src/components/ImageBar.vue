@@ -27,7 +27,7 @@ export default {
   },
 
   created() {
-    console.log(this.imgarr);
+    // console.log(this.imgarr);
   },
 
 }
