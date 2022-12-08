@@ -16,32 +16,6 @@ def myapp():
     message = "Flask server is running!"
     return message
 
-# @app.route('/add')
-# def add():
-#     # Checking that both parameters have been supplied
-#     for param in ['x', 'y']:
-#         if not param in request.args:
-#             result = { 
-#                 'type': '%s value is missing' % param, 
-#                 'content': '', 
-#                 'status': 'REQUEST_DENIED'
-#             }
-#             return jsonify(result)
-    
-#     # Make sure they are numbers too
-#     try:
-#         x = float(request.args['x'])
-#         y = float(request.args['y'])
-#     except:
-#         return "x and y should be numbers"
-    
-#     result = { 
-#         'type': 'result', 
-#         'content': x+y, 
-#         'status': 'REQUEST_OK'
-#     }   
-#     return jsonify(result)
-
 @app.route('/rankGroups')
 @cross_origin()
 def rankGroups():
@@ -156,7 +130,7 @@ def fid_group_list(group_num, num_imgs):
     except:
         return ret
     
-    fid_score = float(json.load(open(os.path.join(img_dir,'desc.json')))["fid"])
+    fid_score = float(json.load(open(os.path.join(img_dir,'desc.json')))["frechet_inception_distance"])
     for x in range(len(sample_list)):
         url = base_url+":"+str(IMG_PORT)+"/images/"+img_dirs[group_num - 1]+"/"+sample_list[x]
         ret.append({"id": x, "fid":fid_score, "url":url})
@@ -189,7 +163,7 @@ def grouped_by_fid_list(group_num, num_imgs):
     except:
         return ret
 
-    fid_score = float(json.load(open(os.path.join(img_dir,'desc.json')))["fid"])
+    fid_score = float(json.load(open(os.path.join(img_dir,'desc.json')))["frechet_inception_distance"])
     for x in range(len(sample_list)):
         url = base_url+":"+str(IMG_PORT)+"/images/"+img_dirs[group_num - 1]+"/"+sample_list[x]
         ret.append(url)
