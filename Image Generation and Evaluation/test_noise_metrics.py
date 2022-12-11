@@ -39,13 +39,20 @@ class TestNoiseMetrics(unittest.TestCase):
             inception = inception_v3(pretrained=True) # Load pretrained Inception-v3
             
             # Weights should be changed if Gaussian noise is added to the parameters
-            inception2 = noise_metrics.add_noise(inception_v3(pretrained=True), 0.2) # Add Gaussian noise to Inception-v3
+            inception2 = noise_metrics.add_noise(inception_v3(pretrained=True), noise_variance=0.2) # Add Gaussian noise to Inception-v3
             if self.__equals_parameters(inception, inception2):
                 self.assertFalse("Weights should be changed if noise_variance != 0")
             
+            self.assertTrue("noise_metrics works correctly!")
+
+    def test_add_noise_none(self):
+        '''Tests if noise_metrics.add_noise() works correctly when no noise is added.'''
+        with torch.no_grad():
+            inception = inception_v3(pretrained=True) # Load pretrained Inception-v3
+            
             # Weights should not be changed if Gaussian noise is not added to the parameters
-            inception3 = noise_metrics.add_noise(inception_v3(pretrained=True), 0)
-            if not self.__equals_parameters(inception, inception3):
+            inception2 = noise_metrics.add_noise(inception_v3(pretrained=True))
+            if not self.__equals_parameters(inception, inception2):
                 self.assertFalse("Weights should not be changed if noise_variance == 0")
             
             self.assertTrue("noise_metrics works correctly!")
@@ -55,9 +62,6 @@ class TestNoiseMetrics(unittest.TestCase):
 
         set1 = self.__download_set('test_images/set1') # StyleGAN2 AFHQ-Wild, FID: 3.4703217644117217
         set2 = self.__download_set('test_images/set2') # Noised StyleGAN2 AFHQ-Wild, FID: 34.511662174966546
-
-        if noise_metrics.calculate_metrics(set1, '.', noise_variance=0.2) or noise_metrics.calculate_metrics('.', set2, noise_variance=0.2):
-            self.assertFalse("calculate_metrics should not calculate metrics if there are less than 2048 images in either distribution!")
 
         if not noise_metrics.calculate_metrics(set1, set2, noise_variance=0.2): # Calculate and save metrics
             self.assertFalse("calculate_metrics did not save the metrics!")
@@ -84,6 +88,23 @@ class TestNoiseMetrics(unittest.TestCase):
                 self.assertFalse("noise_variance was not saved!")
             if metrics["noise_variance"] != 0.2:
                 self.assertFalse("noise_variance is not the correct value!")
+
+        self.assertTrue("calculate_metrics works correctly!")
+
+    def test_calculate_metrics_small(self):
+        '''Tests if noise_metrics.calculate_metrics() works correctly when image sets are too small.'''
+
+        set1 = self.__download_set('test_images/set1') # StyleGAN2 AFHQ-Wild, FID: 3.4703217644117217
+        # '.': No images
+
+        if noise_metrics.calculate_metrics(set1, '.'):
+            self.assertFalse("calculate_metrics should not calculate metrics if there are less than 2048 images in either distribution!")
+
+        if noise_metrics.calculate_metrics('.', set1):
+            self.assertFalse("calculate_metrics should not calculate metrics if there are less than 2048 images in either distribution!")
+
+        if noise_metrics.calculate_metrics('.', '.'):
+            self.assertFalse("calculate_metrics should not calculate metrics if there are less than 2048 images in either distribution!")
 
         self.assertTrue("calculate_metrics works correctly!")
 
