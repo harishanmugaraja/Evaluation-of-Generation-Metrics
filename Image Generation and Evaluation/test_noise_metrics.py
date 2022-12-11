@@ -21,15 +21,17 @@ class TestNoiseMetrics(unittest.TestCase):
 
         else: # Download images
             if dir == 'test_images/set1':
-                url = "NOTIMPLEMENTED"
+                url = "https://www.googleapis.com/drive/v3/files/1I-TYXXHrfFciUNvMcgj4Qo8QiXNsI8Yq/view?usp=share_link"
             else:
-                url = "NOTIMPLEMENTED"
+                url = "https://www.googleapis.com/drive/v3/files/18B-xq4igb7kzVOZoEsWlPSUp281nueXX"
             print("Downloading: " + url)
             response = requests.get(url, stream=True)
             if response.status_code == 200:
                 print("Unzipping into: " + dir)
                 with open(dir, 'wb') as f:
                     f.write(response.raw.read())
+            else:
+                print("File not found: Download from https://drive.google.com/drive/u/0/folders/1xQO4n0uBFYxBd-X0QT4w9JICtozZ7PzE")
         
         return dir
 
