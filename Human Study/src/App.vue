@@ -5,6 +5,8 @@ import ImageGridSingle from './components/ImageGridSingle.vue';
 import ImageGridWhole from './components/ImageGridWhole.vue';
 </script>
 
+<!-- This is the file where the components get mounted to as a final HTML file -->
+
 <template>
   <div class="app">
     <RankGroups :prompt = "'Rank these groups of images from highest image quality to the lowest'"></RankGroups>

@@ -1,3 +1,4 @@
+<!-- Very similar to ImageBox, except that this is a rectangle that houses groups of images in a row -->
 <template>
     <h1>{{prompt}}</h1>
     <div class = 'rectangle'>
@@ -25,11 +26,6 @@ export default {
     imgarr: Array,
     prompt: String,
   },
-
-  created() {
-    // console.log(this.imgarr);
-  },
-
 }
 </script>
 

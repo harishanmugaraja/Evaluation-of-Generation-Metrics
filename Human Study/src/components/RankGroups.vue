@@ -1,7 +1,8 @@
+<!-- This task asks users to rank groups of images by dragging them to reorder -->
 <template>
     <div class="rank-container">
         <h1>{{prompt}}</h1>
-        <draggable :list="imagebars" item-key="name" :group="this.id">
+        <draggable :list="imagebars" item-key="name" :group="this.id"> <!-- we essentially create an re-orderable array of ImageBar componenets -->
             <template #item = "{ element }">
                 <div>
                     <ImageBar :imgarr="element.imagelist"></ImageBar>
@@ -39,13 +40,12 @@ export default {
         prompt: String,
     },
 
-    created(){
+    created() {
         this.id = uniqueId();
         axios
         .get(BASE_URL+'rankGroups')
         .then((response) => {
           this.imagebars = response.data.imagearrs; 
-        //   console.log(response.data.imagearrs);
         });
     },
 
@@ -53,6 +53,7 @@ export default {
         return {
             id: null,
             imagebars: [],
+            // After API call is made in created(), iamgebars should look like this:
             // imagebars: [
             //     {id: 0, fid: 1, imagelist: ['../assets/images/group1/p1.png','../assets/images/group1/p2.png','../assets/images/group1/p3.png','../assets/images/group1/p4.png']},
             //     {id: 1, fid: 2, imagelist: ['../assets/images/group2/p1.png','../assets/images/group2/p2.png','../assets/images/group2/p3.png','../assets/images/group2/p4.png']},

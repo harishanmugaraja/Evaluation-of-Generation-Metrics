@@ -1,3 +1,4 @@
+<!-- This component is meant to be an odd-one-out task. The user is picking an image that does not look like the others-->
 <template>
     <h1>{{prompt}}</h1>
     <SquareGrid>    
@@ -9,7 +10,8 @@
 
 <style scoped lang="scss">
 
-SquareGrid {
+SquareGrid { // This Square Grid component is actually made with SASS and not HTML.
+             // The SASS code is very succcinct and performant
     // The content width you use on your website
     --content-width: 320px;
 
@@ -32,12 +34,11 @@ SquareGrid {
     grid-auto-rows: var(--row-size);
 
     grid-column-gap: var(--gutter);
-    grid-row-gap: var(--gutter);
+    grid-row-gap: var(--gutter); // gap between columns
 
 }
 
-
-//decide with media queries when to add another column 
+// This code overwrites the code in created(), but here are some things you can do with media queries if you put them in SquareGrid
 
 // @media (min-width: 450px) {
 //     SquareGrid {
@@ -60,7 +61,6 @@ SquareGrid {
 
 <script>
 import ImageBox from './ImageBox.vue';
-
 import uniqueId from 'lodash.uniqueid';
 import axios from 'axios';
 
@@ -80,40 +80,38 @@ export default {
             }
         }
     },
-    created() {
+    created() { //API call made here to set a unique ID, populate and initialize imagearr, and set styling for ImageGrid
         this.id = uniqueId();
         axios
         .get(BASE_URL+'gridSingle')
         .then((response) => {
           this.imagearr = response.data.groups; 
-        //   console.log(response);
           this.initData();
         });
         document.documentElement.style.setProperty("--content-width", this.size * 100);
         document.documentElement.style.setProperty("--columns", this.size);
-        // console.log("create grid ran")
     },
     methods: {
         select(num){
-            if (this.selectNum < 0) {
+            if (this.selectNum < 0) { // if selectNum is negative, it means no image has been selected yet, we change that fact in this method
                 this.selectNum = 0
             }
-            this.imagearr[this.selectNum].selected = false;
+            this.imagearr[this.selectNum].selected = false; // changes data to which component is selected. Changing the "selected" field makes the ImageBox border turn green!
             this.selectNum = num;
             this.imagearr[this.selectNum].selected = true;
-            // console.log(url, fid);
         },
         initData() {
-            for (const image of this.imagearr) {
+            for (const image of this.imagearr) { // Wasn't part of the API call, so we add it here. Wasn't added to the API call to make back-end code cleaner
                 image.selected = false;
             }
         },
     },
     data() {
         return {
-            selectNum: -1,
-            id: null,
+            selectNum: -1, // shows which index of imagearr was selected by the user
+            id: null, // assigned a Unique ID by loadash
             imagearr: [],
+            // After the API call is made in created, iamgearr should look like this:
             // imagearr: [
             //     {
             //         "id": 5,
@@ -162,7 +160,6 @@ export default {
             //         "url": "../assets/images/group1/p3.png"
             //     },
             // ],
-            gridarr: [],
         };
     },
     components: { ImageBox }
