@@ -1,1 +1,1 @@
-# Running metrics for BigGan
+# Evaluation-of-Generation-Metrics
