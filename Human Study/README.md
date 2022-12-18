@@ -1,22 +1,30 @@
 # Human Study
 
-This template should help get you started developing with Vue 3 in Vite.
+This folder contains the code related to the human study.
 
-## Recommended IDE Setup
+## Get Started
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Dependencies
+Start by installing required dependencies:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+From this folder, run:
 ```sh
 npm install
 ```
+```sh
+pip install Flask
+```
+```sh
+cd api/image_server
+npm install
+```
 
-### Compile and Hot-Reload for Development
+### Get images
+The images themselves are are on fid00.umiacs.umd.edu.
+Use your favorite client to copy the images folder into ./public.
+If you are not an author and would like access to the images, please contact the authors of the study.
+
+### Compile and Hot-Reload for Development (Run frontend)
 
 ```sh
 npm run dev
