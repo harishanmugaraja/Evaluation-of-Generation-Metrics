@@ -24,7 +24,7 @@ cd api/image_server
 npm install
 ```
 ### Get images
-The images themselves are are on fid00.umiacs.umd.edu.
+The images themselves are are on fid00.umiacs.umd.edu/home/cs473000/images/.
 Use your favorite client to copy the images folder into ./public.
 If you are not an author and would like access to the images, please contact the authors of the study.
 
