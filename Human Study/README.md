@@ -6,6 +6,11 @@ This folder contains the code related to the human study.
 
 ### Dependencies
 Start by installing required dependencies:
+You will need Node.js and Python3 to run this project.
+
+[Node.js](https://nodejs.org/en/download/)
+
+[Python3](https://www.python.org/downloads/)
 
 From this folder, run:
 ```sh
@@ -18,13 +23,13 @@ pip install Flask
 cd api/image_server
 npm install
 ```
-
 ### Get images
 The images themselves are are on fid00.umiacs.umd.edu.
 Use your favorite client to copy the images folder into ./public.
 If you are not an author and would like access to the images, please contact the authors of the study.
 
-### Compile and Hot-Reload for Development (Run frontend)
+## Run Frontend
+### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
@@ -41,3 +46,20 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Run Flask server
+```sh
+./api/runapp.sh
+```
+OR
+```sh
+cd api/
+flask run
+```
+
+## Run Image Server
+```sh
+cd api/image_server
+node app.js
+```
+
