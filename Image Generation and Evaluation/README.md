@@ -3,6 +3,9 @@
 ## [StyleGAN2-ADA-PyTorch](https://github.com/tuallen/noise_metrics-stylegan2-ada-pytorch) 
 We implemented our image generation and evaluation pipeline in [NVlabs/stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch). See our [fork](https://github.com/tuallen/noise_metrics-stylegan2-ada-pytorch) for more details.
 
+## ```BigGAN```
+BigGAN with our image generation and evaluation pipeline.
+
 ## Pipeline for Generating and Evaluating Image Distributions by Noising Pretrained Weights
 Modifying a model’s generation script requires only three lines of code: the first to import the module, the second to add noise to the loaded pretrained weights, and the third to calculate the metrics after the images are generated. Thus, we created a pipeline for generating and evaluating image distributions with any PyTorch image generation model.
 1. Put ```noise_metrics.py``` in the main directory.
