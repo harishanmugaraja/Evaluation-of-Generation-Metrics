@@ -118,8 +118,10 @@ export default {
             
         },
         initData() {
-            for (const image of this.imagearr) {
-                image.selected = false;
+            for (const imagearr of this.imagearrs) {
+                for (const image of imagearr) {
+                    image.selected = false;
+                }
             }
         },
     },
@@ -128,107 +130,6 @@ export default {
             selectNum: -1, // shows which index of imagearr was selected by the user
             id: null, // assigned a Unique ID by loadash
             imagearrs: [],
-            
-            // After the API call is made in created, iamgearrs should look like this:
-            // [
-            // [
-            //     {
-            //         "id": 5,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p2.png"
-            //         //selected: false
-            //     },
-            //     {
-            //         "id": 4,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p1.png"
-            //     },
-            //     {
-            //         "id": 6,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p3.png"
-            //     },
-            //     {
-            //         "id": 7,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p4.png"
-            //     },
-            //     {
-            //         "id": 0,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p1.png"
-            //     },
-            //     {
-            //         "id": 2,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p3.png"
-            //     },
-            //     {
-            //         "id": 1,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p2.png"
-            //     },
-            //     {
-            //         "id": 3,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p4.png"
-            //     },
-            //     {
-            //         "id": 8,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p3.png"
-            //     },
-            // ],
-
-            // [
-            //     {
-            //         "id": 5,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p2.png"
-            //         //selected: false
-            //     },
-            //     {
-            //         "id": 4,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p1.png"
-            //     },
-            //     {
-            //         "id": 6,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p3.png"
-            //     },
-            //     {
-            //         "id": 7,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p4.png"
-            //     },
-            //     {
-            //         "id": 0,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p1.png"
-            //     },
-            //     {
-            //         "id": 2,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p3.png"
-            //     },
-            //     {
-            //         "id": 1,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p2.png"
-            //     },
-            //     {
-            //         "id": 3,
-            //         "fid": 1,
-            //         "url": "../assets/images/group3/p4.png"
-            //     },
-            //     {
-            //         "id": 8,
-            //         "fid": 2,
-            //         "url": "../assets/images/group1/p3.png"
-            //     },
-            // ]
-            // ],
         };
     },
     components: { ImageBox }
